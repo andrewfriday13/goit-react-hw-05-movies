@@ -1,8 +1,5 @@
-
 import axios from 'axios';
-import { useEffect, useState } from 'react';
-
-
+import { useEffect, useState,  } from 'react';
 
 import { Link } from "react-router-dom"
 
@@ -17,7 +14,6 @@ const Home =()=>{
         .catch(err => console.log(err.message))
         .finally()
     },[])
-    // const trends =["oldMan", "Superman", "Time", "Interstellar"]
 
     const getTrends = async () =>{ 
         const API_KEY = '7140726491bb46cefd66d6c99674ef87'
@@ -31,7 +27,7 @@ const Home =()=>{
             {films.map(({id, title}) =>{
                 return(
                     <li key={id}>
-                       <Link key={id} to={`${title}`} >{title}</Link>
+                       <Link key={id} to={`${title}`}  >{title}</Link>
                     </li>
                 )
             })}

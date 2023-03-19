@@ -3,6 +3,7 @@ import { Link, Outlet } from "react-router-dom"
 
 const TrendMovie = () => {
     return (<div>
+        <Link to="/"><button> Go back</button> </Link>
         <div>картинка фільму</div>
         <div>опис і всяка діч</div>
         <ul>
