@@ -1,10 +1,10 @@
-import Home from "pages/home/home";
-import Movies from "pages/movies/movies";
+import Home from "pages/home";
+import Movies from "pages/movies";
 import { NavLink, Route, Routes } from "react-router-dom";
 import Cats from "./cats/cats";
-import MovieSearch from "./movieSearch/movieSearch";
+
 import Reviews from "./reviews/reviews";
-import TrendMovie from "./trendMovie/trendMovie";
+import Movie from "./movie/movie";
 
 
 
@@ -19,13 +19,13 @@ export const App = () => {
       </nav>
     <Routes>
       <Route path="/" element={<Home/>}/> 
-      <Route path="/:id" element={<TrendMovie/>}>
+      <Route path="/:trendId" element={<Movie/>}>
         <Route path="cats" element={<Cats/>}/>
         <Route path="reviews" element={<Reviews/>}/>
         </Route> 
 
       <Route path="/movies" element={<Movies/>}>
-        <Route path="movies/:id" element={<MovieSearch/>}/>
+        {/* <Route path=":movieId" element={<Movie/>}/> */}
       </Route>
     </Routes>
     </div>
