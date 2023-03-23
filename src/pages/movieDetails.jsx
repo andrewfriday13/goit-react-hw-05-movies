@@ -7,9 +7,10 @@ const MovieDetails = () => {
 
     const[oneMovie, setOneMoivie] = useState({})
     const {movieId} = useParams()
+    console.log(movieId)
     
     useEffect(()=>{
-        getMovie(movieId).then(response => setOneMoivie(response))
+        getMovie(movieId).then(response => {setOneMoivie(response) ;console.log(response)})
         .catch(err => console.log(err))
         .finally()
     },[movieId])
