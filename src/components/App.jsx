@@ -4,9 +4,7 @@ import { NavLink, Route, Routes } from "react-router-dom";
 import Cats from "./cats/cats";
 
 import Reviews from "./reviews/reviews";
-import Movie from "./movie/movie";
-
-
+import MovieDetails from "../pages/movieDetails";
 
 export const App = () => {
   return (
@@ -19,12 +17,12 @@ export const App = () => {
       </nav>
     <Routes>
       <Route path="/" element={<Home/>}/> 
-      <Route path="/:trendId" element={<Movie/>}>
+      <Route path="movies" element={<Movies/>}>
+      <Route path="movies/:movieId" element={<MovieDetails/>}>
         <Route path="cats" element={<Cats/>}/>
         <Route path="reviews" element={<Reviews/>}/>
         </Route> 
 
-      <Route path="/movies" element={<Movies/>}>
         {/* <Route path=":movieId" element={<Movie/>}/> */}
       </Route>
     </Routes>

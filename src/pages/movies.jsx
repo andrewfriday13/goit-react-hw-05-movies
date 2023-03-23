@@ -1,16 +1,17 @@
 import { useState, useEffect } from "react"
 import axios from 'axios';
-import { Link, Outlet, useSearchParams } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
+import FormSearch from "components/formSearch/formSearch";
 
 
 const Movies =()=>{
 const[films, setFlilms] = useState([])
 const[nameFilm, setNameFilm] = useState('')
 const[sendFetch, setSendFetch] =useState(false)
-const [searchParams, setSearchParams] = useSearchParams();
-const query = searchParams.get("query") ?? "";
-
-
+// const [searchParams, setSearchParams] = useSearchParams();
+const[ emptyList, setEmptyList] =useState(false) 
+// const query = searchParams.get("query") ?? "";
+const location = useLocation()
 
 
 useEffect(() => {
@@ -29,41 +30,34 @@ useEffect(() => {
 }
 
 const handleChange = ({target}) => {
-        const { value} =target
-        if(value === '') return setSearchParams({})
-        setNameFilm(value)
-        setSearchParams({ query: target.value })
+    const { value} =target
+    // if(value === '') return setSearchParams({})
+    setNameFilm(value)
+    // setSearchParams({ query: target.value })
 }
 
 const handleSabmit = event =>{
-        event.preventDefault()
-        getFilms(event.target)
-        document.querySelector('input').value = '';
-        setSendFetch(!sendFetch)
-
+    event.preventDefault()
+    getFilms(event.target)
+    setSendFetch(!sendFetch)
+    document.querySelector('input').value = '';
+    setEmptyList(true)
 }
 
 
 return <div>
-       <form onSubmit={handleSabmit}>
-        <label>
-            <input 
-             type="text"
-             onChange={handleChange}
-             autoComplete="off"
-             autoFocus
-             name={query}
-             placeholder="Search movies"
-            />
-            <button type="submit"> search</button>
-        </label>
-       </form>
-       {films.length ===0 ?(<p>нема</p>) :(<ul>
+     <FormSearch
+      handleSabmit={handleSabmit}
+      handleChange={handleChange}
+      />
+
+       {  (emptyList && films.length === 0 )&& <p>Please, change your request</p>}
+       <ul>
         {films.map(({id, title}) =>
          <li key={id}>
-            <Link  to={`/${id}`}>{title}</Link>
+            <Link state={{from: location}} to={`/movies/${id}`}>{title}</Link>
         </li>)}
-       </ul>)}
+       </ul>
        <Outlet/>
     </div>
  }

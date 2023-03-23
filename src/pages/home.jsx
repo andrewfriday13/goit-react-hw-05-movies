@@ -1,11 +1,14 @@
 import axios from 'axios';
-import TrendList from 'components/trendList/trendList';
+import MovieList from 'components/MovieList/MovieList';
+// import MoviesList from 'components/moviesList/moviesList';
+// import TrendList from 'components/trendList/trendList';
 import { useEffect, useState,  } from 'react';
 
-import {  Outlet,  } from "react-router-dom"
+// import {   Outlet,  } from "react-router-dom"
 
 
 const Home =()=>{
+    // const {movieId} = useParams()
 
     // eslint-disable-next-line no-unused-vars
     const[films, setFlilms] = useState([])
@@ -25,8 +28,7 @@ const Home =()=>{
 
     return <div>
         <h1>Trending tooday</h1>
-        <TrendList getTrends={getTrends}/>
-        <Outlet/>
+        <MovieList films={films}/>
     </div>
  }
 

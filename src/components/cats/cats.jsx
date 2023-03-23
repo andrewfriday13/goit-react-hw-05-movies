@@ -5,10 +5,10 @@ import { useParams } from "react-router-dom"
 
 const Cats = () => {
   const[cats, setCats ] =useState([])
-  const {trendId} = useParams()
+  const {movieId} = useParams()
 
 useEffect(() => {
-getMovie(trendId)
+getMovie(movieId)
 .then(el => setCats(el.cast))
 .catch(el => console.log(el))
 // eslint-disable-next-line react-hooks/exhaustive-deps

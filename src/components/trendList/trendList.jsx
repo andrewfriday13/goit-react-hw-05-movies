@@ -22,7 +22,7 @@ const TrendList = ({getTrends}) => {
             {films.map(({id, title}) =>{
                 return(
                     <li key={id}>
-                       <Link key={id} to={`${id}`}>{title}</Link>
+                       <Link key={id} to={`/movies/${id}`}>{title}</Link>
                     </li>
                 )
             })}
