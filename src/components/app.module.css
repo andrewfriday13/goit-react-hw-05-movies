@@ -1,0 +1,22 @@
+.styleUl{
+    display: flex;
+    gap: 40px;
+    justify-content: flex-start;
+    list-style: none;
+}
+
+ .styleLi{
+    text-decoration: none;
+ }
+
+ .link{
+    text-decoration: none;
+    font-size: 24px;
+    color: brown;
+ }
+
+ .link:hover,
+ .link:focus{
+  color:rgb(61, 105, 51);
+  font-weight: 500;
+ }

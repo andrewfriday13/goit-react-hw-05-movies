@@ -1,16 +1,15 @@
 import axios from "axios"
-import { useEffect, useState } from "react"
-import { Link, Outlet, useParams } from "react-router-dom"
+import { useEffect, useRef, useState, } from "react"
+import { Link, Outlet, useParams, useLocation } from "react-router-dom"
 
 
 const MovieDetails = () => {
 
     const[oneMovie, setOneMoivie] = useState({})
     const {movieId} = useParams()
-    console.log(movieId)
     
     useEffect(()=>{
-        getMovie(movieId).then(response => {setOneMoivie(response) ;console.log(response)})
+        getMovie(movieId).then(response => setOneMoivie(response) )
         .catch(err => console.log(err))
         .finally()
     },[movieId])
@@ -26,11 +25,21 @@ const {overview, poster_path, original_title, vote_average} = oneMovie
 const imgUrl = `https://image.tmdb.org/t/p/w500/${poster_path}`
 const emptyImg = 'https://www.pays-sud-charente.com/inc/image/img_actualite/defaut.png'
 
+const location = useLocation();
+const locationState = location.state?.from ?? '/movies'
+const backLink = useRef(locationState)
+console.log(location)
+console.log(backLink)
+
     return (<>
-        <Link><button> Go back</button> </Link>
+        <Link to={backLink.current}><button type="button"> Go back</button> </Link>
         <h1>{original_title}</h1>
-        { poster_path === null?(<img src={emptyImg} alt=""  width='160'/>):
-        (<img src={imgUrl} alt=""  width='160'/>)}
+        { poster_path === null 
+        ? 
+        (<img src={emptyImg} alt=""  width='160'/>)
+        :
+        (<img src={imgUrl} alt=""  width='160'/>)
+        }
         <p>рейтинг: {vote_average}</p>
         <div>{overview}</div>
         <ul>

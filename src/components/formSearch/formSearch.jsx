@@ -1,7 +1,8 @@
-const FormSearch = ({handleSabmit, handleChange}) => {
+const FormSearch = ({handleSabmit, handleChange, search}) => {
     return <form onSubmit={handleSabmit}>
     <label>
         <input 
+        search={search}
          type="text"
          onChange={handleChange}
          autoComplete="off"

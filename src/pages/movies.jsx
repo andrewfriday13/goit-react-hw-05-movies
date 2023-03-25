@@ -1,17 +1,18 @@
 import { useState, useEffect } from "react"
 import axios from 'axios';
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Link, Outlet, useLocation, useSearchParams } from "react-router-dom";
 import FormSearch from "components/formSearch/formSearch";
 
 
 const Movies =()=>{
+
 const[films, setFlilms] = useState([])
 const[nameFilm, setNameFilm] = useState('')
 const[sendFetch, setSendFetch] =useState(false)
-// const [searchParams, setSearchParams] = useSearchParams();
+const [searchParams, setSearchParams] = useSearchParams();
 const[ emptyList, setEmptyList] =useState(false) 
-// const query = searchParams.get("query") ?? "";
-const location = useLocation()
+
+const search  = searchParams.get("search ") ?? "";
 
 
 useEffect(() => {
@@ -19,6 +20,7 @@ useEffect(() => {
     .then(({results}) =>   setFlilms([ ...results]))
     .catch(err => console.log(err.message))
     .finally()
+
 // eslint-disable-next-line react-hooks/exhaustive-deps
 }, [ sendFetch])
 
@@ -31,9 +33,9 @@ useEffect(() => {
 
 const handleChange = ({target}) => {
     const { value} =target
-    // if(value === '') return setSearchParams({})
+    if(value === '') return setSearchParams({})
     setNameFilm(value)
-    // setSearchParams({ query: target.value })
+    setSearchParams({ search : target.value })
 }
 
 const handleSabmit = event =>{
@@ -44,9 +46,11 @@ const handleSabmit = event =>{
     setEmptyList(true)
 }
 
+const location = useLocation()
 
 return <div>
      <FormSearch
+     search={search }
       handleSabmit={handleSabmit}
       handleChange={handleChange}
       />
