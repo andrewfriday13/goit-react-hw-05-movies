@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import axios from 'axios';
 import {  Outlet, useSearchParams } from "react-router-dom";
 import FormSearch from "components/formSearch/formSearch";
-
+// import css from './stylePages.module.css'
 
 import MovieList from "components/MovieList/MovieList";
 
@@ -51,11 +51,14 @@ const handleSabmit = event =>{
 }
 
 return <>
+     {/* <span className={css.spanSearch}>Search Films</span> */}
      <FormSearch
+
      search={search }
       handleSabmit={handleSabmit}
       handleChange={handleChange}
       />
+
        {  (emptyList && films.length === 0 )&& <p>Please, change your request</p>}
        <MovieList films={films}/>
        <Outlet/>
@@ -65,3 +68,6 @@ return <>
  export default Movies
 
 
+//  Movies.propTypes = {
+//     movieId: 
+//  }

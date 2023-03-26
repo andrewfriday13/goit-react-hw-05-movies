@@ -2,7 +2,7 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { Outlet, useParams } from "react-router-dom"
-
+import css from './styleReviews.module.css'
 
 const Reviews = () => {
   const[reviews, setReviews ] =useState([])
@@ -29,7 +29,7 @@ getMovie(movieId)
       return <h1>We don`t have reviews</h1>
     } else {
       return (<div>
-        <ul>
+        <ul className={css.reviews}>
           {reviews.map(({id, author,content}) => (
              <li key={id}>
               <h3>{author}</h3>

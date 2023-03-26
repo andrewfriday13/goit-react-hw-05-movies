@@ -13,12 +13,10 @@ const MovieDetails = lazy(() => import('../pages/movieDetails'));
 export const App = () => {
   return (
     <div>
-      <nav>
         <ul className={css.styleUl}>
           <li><NavLink className={css.link} to='/'>Home</NavLink></li>
           <li><NavLink className={css.link} to='/movies'>Movies</NavLink></li>
         </ul>
-      </nav>
  <Suspense>
  <Routes>
       <Route path="/" element={<Home/>}/> 

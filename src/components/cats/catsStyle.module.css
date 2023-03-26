@@ -1,0 +1,14 @@
+.listCats{
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    gap: 15px;
+}
+
+.itemCats{
+    width: 90px;
+    display: flex;
+flex-direction: column;
+align-items: center;}
