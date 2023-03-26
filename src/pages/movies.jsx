@@ -1,26 +1,30 @@
 import { useState, useEffect } from "react"
 import axios from 'axios';
-import { Link, Outlet, useLocation, useSearchParams } from "react-router-dom";
+import {  Outlet, useSearchParams } from "react-router-dom";
 import FormSearch from "components/formSearch/formSearch";
+
+
+import MovieList from "components/MovieList/MovieList";
+
 
 
 const Movies =()=>{
 
 const[films, setFlilms] = useState([])
-const[nameFilm, setNameFilm] = useState('')
 const[sendFetch, setSendFetch] =useState(false)
 const [searchParams, setSearchParams] = useSearchParams();
 const[ emptyList, setEmptyList] =useState(false) 
 
-const search  = searchParams.get("search ") ?? "";
 
+const search  = searchParams.get("search") ?? "";
+const[nameFilm, setNameFilm] = useState(search)
 
 useEffect(() => {
-    getFilms(nameFilm)
-    .then(({results}) =>   setFlilms([ ...results]))
+
+    getFilms(nameFilm )
+    .then(({results}) =>   {console.log(results); setFlilms([ ...results])})
     .catch(err => console.log(err.message))
     .finally()
-
 // eslint-disable-next-line react-hooks/exhaustive-deps
 }, [ sendFetch])
 
@@ -33,8 +37,8 @@ useEffect(() => {
 
 const handleChange = ({target}) => {
     const { value} =target
-    if(value === '') return setSearchParams({})
-    setNameFilm(value)
+    if(value === '') return setSearchParams()
+    setNameFilm(value) 
     setSearchParams({ search : target.value })
 }
 
@@ -46,24 +50,16 @@ const handleSabmit = event =>{
     setEmptyList(true)
 }
 
-const location = useLocation()
-
-return <div>
+return <>
      <FormSearch
      search={search }
       handleSabmit={handleSabmit}
       handleChange={handleChange}
       />
-
        {  (emptyList && films.length === 0 )&& <p>Please, change your request</p>}
-       <ul>
-        {films.map(({id, title}) =>
-         <li key={id}>
-            <Link state={{from: location}} to={`/movies/${id}`}>{title}</Link>
-        </li>)}
-       </ul>
+       <MovieList films={films}/>
        <Outlet/>
-    </div>
+    </>
  }
 
  export default Movies

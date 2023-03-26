@@ -20,22 +20,26 @@ getMovie(movieId)
     const movieDetail = await axios.get(` ${BASE_URL}${moviesId}/credits?api_key=${API_KEY}`)
     return   movieDetail.data
   }
+  const emptyImg = 'https://st2.depositphotos.com/1185628/7615/v/450/depositphotos_76156457-stock-illustration-secret-service-agent-icon.jpg'
 
 
-
+console.log(cats)
 //  запит по акторах
     return (<div>
-        якісь актори
+       {cats.length === 0 
+       ?
+        <p>Sorry, we don`t have list actors</p> 
+        :
         <ul>
           {cats.map(({id, name,profile_path}) => (
              <li key={id}>
+              {profile_path !== null ? <img src={`https://image.tmdb.org/t/p/w200/${profile_path}`} alt=""  width='90'/>
+              :
+              (<img src={emptyImg} alt=""  width='90'/>)}
               <h3>{name}</h3>
-              <img src={`https://image.tmdb.org/t/p/w200/${profile_path}`} alt=""  width='90'/>
             </li>
           ))}
-        </ul>
-        <ul>
-        </ul>
+        </ul>}
     </div>)
 }
 

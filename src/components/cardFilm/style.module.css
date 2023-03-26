@@ -1,0 +1,25 @@
+.trendList{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    padding: 0;
+    justify-content: center;
+    list-style: none;
+}
+.trendItem{
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    border-radius: 6px;
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    text-decoration: none;
+    padding-bottom: 20px;
+    justify-content: space-between;
+    color: black;
+    align-items: center;
+    transition: box-shadow 300ms ease;
+}
+.trendItem:hover {
+    box-shadow: 4px 4px 6px rgba(188, 79, 79, 0.5);
+
+}

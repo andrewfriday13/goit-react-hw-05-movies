@@ -7,6 +7,7 @@ const MovieDetails = () => {
 
     const[oneMovie, setOneMoivie] = useState({})
     const {movieId} = useParams()
+
     
     useEffect(()=>{
         getMovie(movieId).then(response => setOneMoivie(response) )
@@ -21,33 +22,36 @@ const getMovie = async (moviesId) => {
     return   movieDetail.data
 }
 
-const {overview, poster_path, original_title, vote_average} = oneMovie
+const {overview, poster_path, original_title, vote_average, release_date} = oneMovie
 const imgUrl = `https://image.tmdb.org/t/p/w500/${poster_path}`
-const emptyImg = 'https://www.pays-sud-charente.com/inc/image/img_actualite/defaut.png'
+const emptyImg = 'https://upload.wikimedia.org/wikipedia/commons/c/c2/No_image_poster.png?20170513175923'
 
 const location = useLocation();
 const locationState = location.state?.from ?? '/movies'
 const backLink = useRef(locationState)
-console.log(location)
-console.log(backLink)
-
-    return (<>
+const rating = (vote_average/10*100).toFixed(0)
+const release = release_date
+    return <div>
         <Link to={backLink.current}><button type="button"> Go back</button> </Link>
-        <h1>{original_title}</h1>
+        <h1>{original_title} ({release})</h1>
+       <div>
         { poster_path === null 
         ? 
         (<img src={emptyImg} alt=""  width='160'/>)
         :
         (<img src={imgUrl} alt=""  width='160'/>)
-        }
-        <p>рейтинг: {vote_average}</p>
-        <div>{overview}</div>
+        }      
+        <p>Rating: {rating}%</p>
+        <ul></ul>
+        <p>{overview}</p>
         <ul>
             <li> <Link to="cats">Cats</Link></li>
             <li> <Link to="reviews">Reviews</Link></li>
         </ul>
+       </div>
         <Outlet/>
-    </>)
+        </div>
+    
 }
 
 

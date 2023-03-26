@@ -1,16 +1,12 @@
 import axios from 'axios';
 import MovieList from 'components/MovieList/MovieList';
-// import MoviesList from 'components/moviesList/moviesList';
-// import TrendList from 'components/trendList/trendList';
 import { useEffect, useState,  } from 'react';
 
-// import {   Outlet,  } from "react-router-dom"
+import css from './stylePages.module.css'
 
 
 const Home =()=>{
-    // const {movieId} = useParams()
 
-    // eslint-disable-next-line no-unused-vars
     const[films, setFlilms] = useState([])
     
     useEffect(() => {
@@ -27,7 +23,7 @@ const Home =()=>{
     }
 
     return <div>
-        <h1>Trending tooday</h1>
+        <h1 className={css.title}>Trending tooday</h1>
         <MovieList films={films}/>
     </div>
  }

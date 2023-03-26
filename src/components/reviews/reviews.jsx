@@ -6,11 +6,11 @@ import { Outlet, useParams } from "react-router-dom"
 
 const Reviews = () => {
   const[reviews, setReviews ] =useState([])
-  const {trendId} = useParams()
+  const {movieId} = useParams()
 
 useEffect(() => {
-getMovie(trendId)
-.then(({results}) => setReviews(results))
+getMovie(movieId)
+.then(({results}) => setReviews([...results]))
 .catch(el => console.log(el))
 // eslint-disable-next-line react-hooks/exhaustive-deps
 },[])
