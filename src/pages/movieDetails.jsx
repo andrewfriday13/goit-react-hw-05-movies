@@ -1,7 +1,6 @@
 import axios from "axios"
 import { useEffect, useRef, useState, } from "react"
 import { Link, Outlet, useParams, useLocation } from "react-router-dom"
-// import PropTypes from 'prop-types';
 import css from './stylePages.module.css'
 
 
@@ -25,7 +24,7 @@ const getMovie = async (moviesId) => {
 }
 
 const {overview, poster_path, genres, original_title, vote_average, release_date} = oneMovie
-console.log(release_date)
+
 const imgUrl = `https://image.tmdb.org/t/p/w500/${poster_path}`
 const emptyImg = 'https://upload.wikimedia.org/wikipedia/commons/c/c2/No_image_poster.png?20170513175923'
 
@@ -45,7 +44,7 @@ const release = release_date
         </Link>
 
        <div className={css.allOverview}>
-       { poster_path === null 
+       { poster_path === undefined 
        ? (<img src={emptyImg} alt=""  width='340'/>)
        : (<img src={imgUrl} alt=""  width='340'/>)}
 
@@ -74,17 +73,3 @@ const release = release_date
 export default MovieDetails
 
 
-// MovieDetails.propTypes ={
-//     movieId: PropTypes.string.isRequired,
-//     overview: PropTypes.string.isRequired,
-//     poster_path: PropTypes.string.isRequired,
-//     original_title: PropTypes.string.isRequired,
-//     vote_average: PropTypes.number,
-//     release_date: PropTypes.number,
-//     genres: PropTypes.arrayOf(
-//         PropTypes.shape({
-//           name: PropTypes.string.isRequired,
-//         })
-//       ),
-
-// }

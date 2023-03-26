@@ -22,7 +22,7 @@ const[nameFilm, setNameFilm] = useState(search)
 useEffect(() => {
 
     getFilms(nameFilm )
-    .then(({results}) =>   {console.log(results); setFlilms([ ...results])})
+    .then(({results}) =>    setFlilms([ ...results]))
     .catch(err => console.log(err.message))
     .finally()
 // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -51,7 +51,7 @@ const handleSabmit = event =>{
 }
 
 return <>
-     {/* <span className={css.spanSearch}>Search Films</span> */}
+
      <FormSearch
 
      search={search }
@@ -66,8 +66,3 @@ return <>
  }
 
  export default Movies
-
-
-//  Movies.propTypes = {
-//     movieId: 
-//  }

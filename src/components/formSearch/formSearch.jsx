@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import css from './formStyle.module.css'
 
 const FormSearch = ({handleSabmit, handleChange, search}) => {
@@ -17,3 +18,9 @@ const FormSearch = ({handleSabmit, handleChange, search}) => {
 }
 
 export default FormSearch
+
+FormSearch.propTypes = {
+    handleSabmit: PropTypes.func.isRequired,
+    handleChange: PropTypes.func.isRequired,
+    search: PropTypes.string.isRequired,
+}

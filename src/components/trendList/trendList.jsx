@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
+import PropTypes from 'prop-types';
 
 
 
@@ -33,3 +34,7 @@ const TrendList = ({getTrends}) => {
 }
 
 export default TrendList
+
+TrendList.propTypes = {
+    getTrends: PropTypes.func.isRequired,
+}
